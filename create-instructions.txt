@@ -1,0 +1,133 @@
+
+create-react-app (dir/project name)
+cd into dir/project name directory
+git remote -v 
+    returns nothing.  shows that the current dir is not hooked to github
+code .
+    opens vscode
+git add .
+    didn't work
+rm -rf .git
+    remove create-react-app git created local repository
+git init
+git add .
+git commit -m "initial files"
+git remote -v 
+    should now show git association with fetch and push
+Go to GitHub and create new repository
+No gitignore and no readme
+copy repo name
+goto command line and link local with origin
+git remote add origin https://github.com/bnkfick/Pupster-Friend.git
+git remote -v 
+    shows git repo now
+git push -u origin master
+    pushes local created react app files to github
+yarn add axios react-router-dom
+yarn start
+
+remove from src/app.js
+remove everyting in between <div className="App"></div>
+remove from src/app.js
+    import logo from './logo.svg';
+    import './App.css';
+Remove file logo.svg
+Remove file App.test.js
+Remove file App.css
+
+remove from index.js
+    import './index.css';
+Remove file index.css
+
+In App.js
+add import { BrowserRouter as Router, Route } from "react-router-dom"
+
+in src dir create components
+in src dire create utils
+
+in components dire create NavBar.js, About.js, Discover.js, Search.js
+
+In components/NavBar.js
+
+import React from "react";
+
+const NavBar = () => {
+    return (
+        {/*insert HTML/JSX here*/}
+    )
+}
+export default NavBar;
+
+then insert HTML/JSX snippet
+
+also in NavBar.js add
+import { Link } from "react-router-dom";
+
+App.js
+add
+import NavBar from ".components/Navbar";
+add/wrap 
+      <div className="App">
+      in <Route></Route>
+
+index.html
+insert above title in head
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+
+insert barebones About, Discover and Search
+
+import React from "react";
+
+const About = () => {
+    return (
+        <h1>About</h1>
+    )
+}
+
+export default About;  
+
+============================
+in App.js
+import About from "./components/About";
+import Discover from "./components/Discover";
+import Search from "./components/Search";
+============================
+
+add routes in App.js
+  render() {
+    return (
+      <Router>
+        <NavBar></NavBar>
+        <Route exact path ="/" component={About} />
+        <Route exact path ="/about" component={About} />
+        <Route exact path ="/discover" component={discover} />
+        <Route exact path ="/search" component={search} />
+      </Router>
+    );
+  }
+err on the side of lowercase in urls
+
+make API.js in the utils folder
+import axios from "axios";
+
+export default {
+    getRandomDog: () => {
+        return axios.get("https://dog.ceo/api/breeds/image/random");
+    }
+}
+
+then  in Discover.js
+make it a class that extends component
+add state with image, count and matched = false
+create a getDogImage function
+    set state with image
+add componentDidMount 
+    call getDogImage
+
+Add image tag to render
+Add buttons to rende
+
+
+Add to Discover.js
+import API from "../utils/API";
